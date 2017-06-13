@@ -23,11 +23,11 @@ public class MainActivity extends AppCompatActivity {
 
         //方法1====start=====
         final Animator animator1=ObjectAnimator.ofFloat(view,"translationX",0.0f,-160.0f);
-        animator1.setDuration(2000);
+        animator1.setDuration(500);
         animator1.setInterpolator(new LinearInterpolator());
 
         final Animator animator2=ObjectAnimator.ofFloat(view,"translationY",0.0f,-100.0f);
-        animator2.setDuration(2000);
+        animator2.setDuration(500);
         animator2.setInterpolator(new DecelerateInterpolator());
 
 
@@ -41,11 +41,11 @@ public class MainActivity extends AppCompatActivity {
             public void onAnimationEnd(Animator animation) {
 
                 final Animator animator3=ObjectAnimator.ofFloat(view,"translationX",-160.0f,-320.0f);
-                animator3.setDuration(2000);
+                animator3.setDuration(500);
                 animator3.setInterpolator(new LinearInterpolator());
 
                 Animator animator4=ObjectAnimator.ofFloat(view,"translationY",-100.0f,0.0f);
-                animator4.setDuration(2000);
+                animator4.setDuration(500);
                 animator4.setInterpolator(new AccelerateInterpolator());
 
                 animator3.start();
@@ -83,11 +83,11 @@ public class MainActivity extends AppCompatActivity {
         //方法2====start=====
 
         final Animator animator11=ObjectAnimator.ofFloat(view,"translationX",0.0f,-320.0f);
-        animator11.setDuration(4000);
+        animator11.setDuration(1000);
         animator11.setInterpolator(new LinearInterpolator());
 
         final ObjectAnimator animator22=ObjectAnimator.ofFloat(view,"translationY",0.0f,0.0f);
-        animator22.setDuration(4000);
+        animator22.setDuration(1000);
         animator22.setInterpolator(new LinearInterpolator());
 
         final float timeTotal=animator22.getDuration();
