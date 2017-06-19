@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator;
 import android.animation.TypeEvaluator;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
@@ -13,6 +14,12 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+    private float x1;
+    private float x2;
+
+    private float y1;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,13 +27,26 @@ public class MainActivity extends AppCompatActivity {
 
         final View view =findViewById(R.id.view);
 
+        DisplayMetrics displayMetrics=new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
+        float density=displayMetrics.density;
+
+        x1=160.0f*density/1.5f;
+        x2=x1*2;
+
+        y1=100.0f*density/1.5f;
+
+
+
+
 
         //方法1====start=====
-        final Animator animator1=ObjectAnimator.ofFloat(view,"translationX",0.0f,-160.0f);
+        final Animator animator1=ObjectAnimator.ofFloat(view,"translationX",0.0f,-x1);
         animator1.setDuration(500);
         animator1.setInterpolator(new LinearInterpolator());
 
-        final Animator animator2=ObjectAnimator.ofFloat(view,"translationY",0.0f,-100.0f);
+        final Animator animator2=ObjectAnimator.ofFloat(view,"translationY",0.0f,-y1);
         animator2.setDuration(500);
         animator2.setInterpolator(new DecelerateInterpolator());
 
@@ -40,11 +60,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animator animation) {
 
-                final Animator animator3=ObjectAnimator.ofFloat(view,"translationX",-160.0f,-320.0f);
+                final Animator animator3=ObjectAnimator.ofFloat(view,"translationX",-x1,-x2);
                 animator3.setDuration(500);
                 animator3.setInterpolator(new LinearInterpolator());
 
-                Animator animator4=ObjectAnimator.ofFloat(view,"translationY",-100.0f,0.0f);
+                Animator animator4=ObjectAnimator.ofFloat(view,"translationY",-y1,0.0f);
                 animator4.setDuration(500);
                 animator4.setInterpolator(new AccelerateInterpolator());
 
@@ -82,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
         //方法2====start=====
 
-        final Animator animator11=ObjectAnimator.ofFloat(view,"translationX",0.0f,-320.0f);
+        final Animator animator11=ObjectAnimator.ofFloat(view,"translationX",0.0f,-x2);
         animator11.setDuration(1000);
         animator11.setInterpolator(new LinearInterpolator());
 
@@ -91,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         animator22.setInterpolator(new LinearInterpolator());
 
         final float timeTotal=animator22.getDuration();
-        float maxHeight=-200.0f;
+        float maxHeight=-y1*2;
         //vt=v0+at;   //vt=0 最高点
         //s=v0*t+0.5*a*t*t ; //s=maxHeight
 
